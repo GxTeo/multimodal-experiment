@@ -1,6 +1,5 @@
 import clip
 import torch
-
 from numpy import ndarray
 from typing import List
 from PIL import Image
@@ -34,7 +33,7 @@ class CLIP:
             with torch.no_grad():
                 image_features = self.model.encode_image(image_input).cpu().detach().numpy()
 
-            list_image_embeddings.append(image_features)
+            list_image_embeddings.append(list(image_features[0]))
 
         return list_image_embeddings
     
@@ -42,13 +41,11 @@ class CLIP:
         """
         Get the embeddings of a list of texts
         """
-        list_text_embeddings = []
 
         # Tokenize the texts with CLIP 
         text_tokens = clip.tokenize(texts).to(self.device)
         with torch.no_grad():
             text_features = self.model.encode_text(text_tokens).cpu().detach().numpy()
         
-        list_text_embeddings.append(text_features[0])
-        return list_text_embeddings
+        return list(text_features[0])
     

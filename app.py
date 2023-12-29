@@ -19,7 +19,7 @@ def retrieve_image_from_query(query: str, image: str) -> str:
     text_embedding = [float(val) for val in text_embedding]
 
     # Query the database for using the text embeddings
-    results = coll.query(query_embedding=text_embedding,  include=["documents", "metadatas"], n_results=4)
+    results = coll.query(query_embeddings=text_embedding,  include=["documents", "metadatas"], n_results=4)
 
     # Get the retrieved documents(images) and their metadata
     docs = results["documents"][0]

@@ -29,7 +29,7 @@ def retrieve_image_from_query(query: str, image: str) -> str:
     list_of_docs = []
 
     for doc, desc in zip(docs, description):
-        list_of_docs.append((docs, list(desc.values())[0]))
+        list_of_docs.append((doc, list(desc.values())[0]))
 
     return list_of_docs
 
